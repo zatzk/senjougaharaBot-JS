@@ -1,0 +1,5 @@
+.env
+package-lock.json
+node_modules/
+config.json
+senjougahara-bot.zip
