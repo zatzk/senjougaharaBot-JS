@@ -9,16 +9,15 @@ module.exports = {
 
   run: async(client, interaction) => {
     const index = (Math.floor(Math.random() * 84+1)) -1;
-    const url = 'https://geradordegatinhosapi.herokuapp.com/gatinhos?_page=1'
     
-    const res = await fetch(`https://geradordegatinhosapi.herokuapp.com/gatinhos/${index}`)
-    const data = await res.json();
-    console.log(data)
+    const res = await (await fetch(`https://geradordegatinhos.netlify.app/db.json`)).json()
+    const data = []
+    data.push(res.gatinhos[index].name, res.gatinhos[index].image)
 
     const embed = new EmbedBuilder()
-      .setTitle(`**Parabéns, você recebeu o: \n ${data.name}**`)	
-      .setThumbnail(data.image)
-      .setColor(0x7289DA)
+      .setTitle(`**Parabéns, você recebeu o: \n ${data[0]}**`)	
+      .setThumbnail(data[1])
+      .setColor('Random')
 
 
     await interaction.reply({embeds: [embed]});
